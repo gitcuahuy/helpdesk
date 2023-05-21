@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "me-chat-a2693": {
+      "hosting": {
+        "a-help-fe": [
+          "me-chat-a2693"
+        ]
+      }
+    }
+  }
+}

@@ -15,7 +15,9 @@
       "ngx-form-validate": [
         "dist/ngx-form-validate/ngx-form-validate",
         "dist/ngx-form-validate"
-      ]
+      ],
+      "@environment/*": ["src/environments/*"],
+      "@shared/*": ["src/app/shared/*"],
     },
     "experimentalDecorators": true,
     "moduleResolution": "node",
