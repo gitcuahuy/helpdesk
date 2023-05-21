@@ -7,15 +7,20 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {environment} from "@environment/environment";
 import {ExtraOptions, PreloadAllModules, RouterModule} from "@angular/router";
-import {AngularFireAuthModule} from "@angular/fire/auth";
-import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireDatabase, AngularFireDatabaseModule} from "@angular/fire/database";
 import {appRoutes} from "./app.routing";
-import { Page404Component } from './modules/public/error/page404/page404.component';
+import {Page404Component} from './modules/public/error/page404/page404.component';
 import {CoreModule} from "./core/core.module";
-import { LoginComponent } from './modules/auth/login/login.component';
-import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
-import { VerifyOTPComponent } from './modules/auth/verify-otp/verify-otp.component';
-import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import {LoginComponent} from './modules/auth/login/login.component';
+import {ResetPasswordComponent} from './modules/auth/reset-password/reset-password.component';
+import {VerifyOTPComponent} from './modules/auth/verify-otp/verify-otp.component';
+import {ForgotPasswordComponent} from './modules/auth/forgot-password/forgot-password.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {AuthFirebaseService} from "./core/auth/auth.service";
+import {HttpClientModule} from "@angular/common/http";
+import {AbstractFileUploadService} from "@shared/model/base/file-upload.model";
+import {FirebaseStorageService} from "@shared/service/firebase-storage.service";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -32,6 +37,7 @@ const routerConfig: ExtraOptions = {
     ForgotPasswordComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     NgxFormValidateModule,
     BrowserAnimationsModule,
@@ -42,10 +48,11 @@ const routerConfig: ExtraOptions = {
     AngularFireDatabaseModule,
     RouterModule,
     RouterModule.forRoot(appRoutes, routerConfig),
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
     // ToastrModule.forRoot({timeOut: 5000}), // ToastrModule added,
   ],
-  providers: [],
+  providers: [AngularFireAuth, AngularFireDatabase, AuthFirebaseService, FirebaseStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

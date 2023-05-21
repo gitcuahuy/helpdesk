@@ -1,2 +1,10 @@
-<p>layout works!</p>
-<router-outlet></router-outlet>
+
+<ng-container [ngSwitch]="layout">
+  <ng-template #main [ngSwitchCase]="LAYOUT.MAIN">
+    <app-main-layout></app-main-layout>
+  </ng-template>
+  <ng-template ngSwitchDefault>
+    <router-outlet></router-outlet>
+  </ng-template>
+</ng-container>
+

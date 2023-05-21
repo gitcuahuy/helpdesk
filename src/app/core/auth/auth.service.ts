@@ -19,11 +19,12 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
 
   userCollection = this.afs.collection(FIRE_COLLECTION.users);
   userData: any; // Save logged in user data
-  constructor(private baseService: BaseService,
+  constructor(
               public afs: AngularFirestore, // Inject Firestore service
               public afAuth: AngularFireAuth, // Inject Firebase auth service
-              protected localStorageService: LocalStorageService) {
-    super(localStorageService);
+              // protected localStorageService: LocalStorageService
+  ) {
+    super();
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
@@ -34,15 +35,14 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
         // localStorage.setItem('user', JSON.stringify(this.userData));
         // JSON.parse(localStorage.getItem('user')!);
       } else {
-        localStorage.setItem('user', 'null');
+        // localStorage.setItem('user', 'null');
         // JSON.parse(localStorage.getItem('user')!);
       }
     });
   }
 
   check(): Observable<boolean> {
-    this._user.getValue();
-    return of(true);
+    return of(false);
   }
 
   initForgotPassword(identifyId: string): Observable<any> {
@@ -99,5 +99,16 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
     // this.afAuth.
     return of(true);
   }
-
+  AuthLogin(provider: any) {
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result)
+        // this.router.navigate(['dashboard']);
+        // this.SetUserData(result.user);
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }
 }

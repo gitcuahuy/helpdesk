@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {Params} from "@angular/router";
 import {BehaviorSubject, Observable} from "rxjs";
 import firebase from "firebase";
-import {CONFIG_DEFAULT} from "@shared/constants/config.constants";
+import {CONFIG_DEFAULT, LAYOUT} from "@shared/constants/config.constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-  systemConfig: BehaviorSubject<Params>;
+  private systemConfig: BehaviorSubject<Params>;
   private remoteConfig = firebase.remoteConfig();
 
   constructor() {
@@ -22,10 +22,7 @@ export class ConfigService {
     })
   }
 
-
-
-  delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+  get config$(): Observable<Params> {
+    return this.systemConfig.asObservable();
   }
-
 }

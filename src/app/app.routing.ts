@@ -1,13 +1,12 @@
 import {Route} from "@angular/router";
 import {Page404Component} from "./modules/public/error/page404/page404.component";
-import {AuthGuard} from "@shared/auth/guard/auth.guard";
-import {NoAuthGuard} from "@shared/auth/guard/no-auth.guard";
 import {LayoutComponent} from "./core/layout/layout.component";
 import {LAYOUT} from "@shared/constants/config.constants";
 import {LoginComponent} from "./modules/auth/login/login.component";
 import {ResetPasswordComponent} from "./modules/auth/reset-password/reset-password.component";
 import {VerifyOTPComponent} from "./modules/auth/verify-otp/verify-otp.component";
 import {ForgotPasswordComponent} from "./modules/auth/forgot-password/forgot-password.component";
+import {NoAuthGuard} from "@shared/auth/guard/no-auth.guard";
 
 export const appRoutes: Route[] = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},

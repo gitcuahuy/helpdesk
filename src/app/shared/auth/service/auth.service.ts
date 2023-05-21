@@ -1,7 +1,6 @@
 import {BehaviorSubject, Observable} from "rxjs";
 import {BaseCredential} from "@shared/auth/model/base-cridential.model";
 import {AuthedResponse} from "@shared/auth/model/authedResponse";
-import {LocalStorageService} from "ngx-webstorage";
 import {LOCAL_STORAGE_KEYS} from "@shared/constants/storage.constants";
 
 export interface IAuthService<T extends BaseCredential> {
@@ -34,45 +33,71 @@ export interface IAuthService<T extends BaseCredential> {
   profile(): Observable<T>;
 }
 
-export abstract class AuthService<T extends BaseCredential>{
+export abstract class AuthService<T extends BaseCredential> {
 
   protected _user: BehaviorSubject<T | undefined>;
 
-  protected constructor(protected localStorageService: LocalStorageService) {
-    this._user = new BehaviorSubject<T | undefined>(this.localStorageService.retrieve(LOCAL_STORAGE_KEYS.PROFILE));
+  protected constructor() {
+
+    this._user = new BehaviorSubject<T | undefined>(this.getItem(LOCAL_STORAGE_KEYS.PROFILE));
+  }
+
+  private getItem<K>(key: string): K | undefined {
+    const userStr = localStorage.getItem(key);
+    return !!userStr ? JSON.parse(userStr) : undefined
+  }
+
+  private setItem<K>(key: string, value: K | undefined): void {
+    if (value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    } else {
+      localStorage.removeItem(key);
+    }
+  }
+
+  private clearItem(key: string): void {
+    localStorage.removeItem(key);
   }
 
   get user$(): Observable<T | undefined> {
     return this._user.asObservable();
   }
 
-  set user(user: T | undefined) {
+  set user(user: any | undefined) {
     this._user.next(user);
     if (user) {
-      this.localStorageService.store(LOCAL_STORAGE_KEYS.PROFILE, user);
+      // this.localStorageService.store(LOCAL_STORAGE_KEYS.PROFILE, user);
+      this.setItem(LOCAL_STORAGE_KEYS.PROFILE, user);
     } else {
-      this.localStorageService.clear(LOCAL_STORAGE_KEYS.PROFILE);
+      this.clearItem(LOCAL_STORAGE_KEYS.PROFILE)
+      // this.localStorageService.clear(LOCAL_STORAGE_KEYS.PROFILE);
     }
   }
 
   get refreshToken(): string | undefined {
-    return this.localStorageService.retrieve(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+    // return this.localStorageService.retrieve(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+    return this.getItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
   }
 
   get token(): string | undefined {
-    return this.localStorageService.retrieve(LOCAL_STORAGE_KEYS.TOKEN);
+    // return this.localStorageService.retrieve(LOCAL_STORAGE_KEYS.TOKEN);
+    return this.getItem(LOCAL_STORAGE_KEYS.TOKEN);
   }
 
   updateToken(token?: string, refreshToken?: string): void {
     if (token) {
-      this.localStorageService.store(LOCAL_STORAGE_KEYS.TOKEN, token);
+      // this.localStorageService.store(LOCAL_STORAGE_KEYS.TOKEN, token);
+      this.setItem(LOCAL_STORAGE_KEYS.TOKEN, token);
     } else {
-      this.localStorageService.clear(LOCAL_STORAGE_KEYS.TOKEN);
+      // this.localStorageService.clear(LOCAL_STORAGE_KEYS.TOKEN);
+      this.clearItem(LOCAL_STORAGE_KEYS.TOKEN);
     }
     if (refreshToken) {
-      this.localStorageService.store(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+      // this.localStorageService.store(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+      this.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
     } else {
-      this.localStorageService.clear(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+      // this.localStorageService.clear(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+      this.clearItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
     }
   };
 
