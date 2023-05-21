@@ -10,6 +10,7 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {FIRE_COLLECTION} from "@shared/constants/document.constants";
 import {fromPromise} from "rxjs/internal-compatibility";
 import {tap} from "rxjs/operators";
+import firebase from "firebase";
 
 @Injectable({
   providedIn: 'root'
@@ -73,10 +74,13 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
     return of(response);
   }
 
-  loginUserName(username: string, password: string): Observable<AuthedResponse> {
-    fromPromise(this.afAuth.signInWithEmailAndPassword(username, password)).subscribe(loginResponse => {
-      console.log('login resoult', loginResponse);
-    })
+  loginUserName(data: {username: string, password: string, isRememberMe: boolean}): Observable<AuthedResponse> {
+    fromPromise(this.afAuth.signInWithEmailAndPassword(data.username, data.password))
+      .subscribe(loginResponse => {
+        console.log(loginResponse.user);
+    },error => {
+        console.log('error', error);
+      })
     const response: AuthedResponse = {
       refreshToken: "",
       accessToken: ""
@@ -99,11 +103,11 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
     // this.afAuth.
     return of(true);
   }
-  AuthLogin(provider: any) {
+  AuthLogin(provider: firebase.auth.AuthProvider) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        console.log(result)
+        console.log('dashboard',result)
         // this.router.navigate(['dashboard']);
         // this.SetUserData(result.user);
       })

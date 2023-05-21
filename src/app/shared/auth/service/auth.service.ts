@@ -14,7 +14,7 @@ export interface IAuthService<T extends BaseCredential> {
 
   updateToken(token: string, refreshToken: string): void;
 
-  loginUserName(username: string, password: string): Observable<AuthedResponse>;
+  loginUserName(data: {username: string, password: string, isRememberMe: boolean}): Observable<AuthedResponse>;
 
   loginOauth(code: string, PARTNER_ID: string): Observable<AuthedResponse>;
 

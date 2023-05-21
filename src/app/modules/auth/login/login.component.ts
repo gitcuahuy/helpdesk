@@ -1,6 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthFirebaseService} from "../../../core/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import firebase from "firebase";
+import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+
 export const FORM_FIELDS = {
   username: 'username',
   password: 'password',
@@ -16,6 +19,7 @@ export const FORM_FIELDS = {
 export class LoginComponent implements OnInit {
   readonly loginForm: FormGroup;
   readonly FORM_FIELDS = FORM_FIELDS;
+
   constructor(private authService: AuthFirebaseService,
               private _cdr: ChangeDetectorRef,
               private _fb: FormBuilder) {
@@ -27,6 +31,36 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.authService.logout().subscribe();
+
   }
 
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      console.error('onSubmit', this.loginForm);
+      return;
+    }
+    this.authService.loginUserName({username: this.loginForm.get(FORM_FIELDS.username)?.value,
+      password: this.loginForm.get(FORM_FIELDS.password)?.value,
+      isRememberMe: this.loginForm.get(FORM_FIELDS.rememberMe)?.value}).subscribe(res => {
+      console.log('res', res);
+    });
+  }
+
+  loginGoogle(): void {
+    const authProvider = new GoogleAuthProvider();
+    authProvider.setCustomParameters({
+      prompt: "select_account"
+    });
+    this.authService.AuthLogin(authProvider).then(res => {
+      console.log('res', res);
+    })
+  }
+
+  loginFacebook(): void {
+    const authProvider = new firebase.auth.FacebookAuthProvider();
+    this.authService.AuthLogin(authProvider).then(res => {
+      console.log('res', res);
+    })
+  }
 }
