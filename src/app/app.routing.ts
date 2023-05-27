@@ -8,6 +8,7 @@ import {VerifyOTPComponent} from "./modules/auth/verify-otp/verify-otp.component
 import {ForgotPasswordComponent} from "./modules/auth/forgot-password/forgot-password.component";
 import {NoAuthGuard} from "@shared/auth/guard/no-auth.guard";
 import {RegisterComponent} from "./modules/auth/register/register.component";
+import {AuthGuard} from "@shared/auth/guard/auth.guard";
 
 export const appRoutes: Route[] = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -45,8 +46,10 @@ export const appRoutes: Route[] = [
     ]
   },
   {
-    path: 'main',
+    path: '',
     component: LayoutComponent,
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     data: {
       layout: LAYOUT.MAIN
     },
