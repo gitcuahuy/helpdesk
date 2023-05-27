@@ -1,0 +1,114 @@
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --blue-primary: #141ed2;
+  --light-blue: #ebf3ff;
+  --dark-blue: #24264e;
+  --light-yellow: #fcf6e0;
+  --table-header: #f3f5ff;
+  --light-gray-table-row: #f5f5f5;
+  --accent: #177ddf;
+  --forcus-bg: #3985ce24;
+  --file-item: #f8f8f8;
+  --light-green: #e2fffb;
+  --bg-header-table: #E5EFFF;
+  /* Status */
+  --positive: #1fb266;
+  --info: #00b69b;
+  --success: #369dff;
+  --error: #eb2d4b;
+  --warning: #f1b627;
+  --draft: #e2fffb;
+
+  --white: #ffffff;
+  --overlay: #00000080; /* Overlay color when modal is open */
+  --black: #000000;
+
+  --shadow: #dcdcdc;
+  --text: #212121;
+  --text-file: #177ddf;
+  --text-black: #000000;
+  --disabled-text: #757575;
+  --disabled-text-op: #00000040;
+  --disabled-bg: #f5f5f5;
+  --active-bg: #f2f9ff;
+  --disabled-border: #d9d9d9;
+  --light-gray: #f8f9fe;
+  --line: #cecece;
+  --input-disabled: #3e4550;
+  --file-item-color: #171717;
+  --green-row: #19bca4;
+  --light-green-row: #e2fffb;
+  --href-color: #0d6efd;
+  --mb-used-color: #6cb5f9;
+  --border-bottom: #dee2e6;
+  --text-muted: #707072;
+  --light-gray-box: #f9f9f9;
+  --higtlight-approval-comment: #e8f2fc;
+  --hightlight-total-price: #bbe2f9;
+  --border-color: #d9d9d9;
+
+  /* In order to convert from px to rem, just divide px values by 16. Example: 16px = 1 rem. (16/16 = 1) */
+  /* Font sizes */
+  --font-xs: 0.75rem; /* 12px */
+  --font-13: 0.8125rem; /* 13px - temporary value, should not use */
+  --font-sm: 0.875rem; /* 14px */
+  --font-base: 1rem; /* 16px */
+  --font-18: 1.125rem; /* 18px */
+  --font-24: 1.5rem; /* 24px */
+  --font-35: _rem(35px); /* 24px */
+
+  /* Font weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* Spacing */
+  --spacing-4: 0.25rem; /* 4px */
+  --spacing-8: 0.5rem; /* 8px */
+  --spacing-10: 0.625rem; /* 10px */
+  --spacing-12: 0.75rem; /* 12px */
+  --spacing-14: 0.875rem; /* 14px */
+  --spacing-16: 1rem; /* 16px */
+  --spacing-20: 1.25rem; /* 20px */
+  --spacing-24: 1.5rem; /* 24px */
+  --spacing-28: 1.75rem; /* 28px */
+  --spacing-32: 2rem; /* 32px */
+  --spacing-36: 2.25rem; /* 36px */
+  --spacing-40: 2.5rem; /* 40px */
+  --spacing-44: 2.75rem; /* 44px */
+  --spacing-48: 3rem; /* 48px */
+
+  /* Boder-radius */
+  --radius-common-button: 3px; /* 3px */
+  --radius-4: 0.25rem; /* 4px */
+  --radius-6: 0.375rem; /* 6px */
+  --radius-8: 0.5rem; /* 8px */
+  --radius-10: 0.625rem; /* 10px */
+  --radius-12: 0.75rem; /* 12px */
+  --radius-14: 0.875rem; /* 14px */
+
+  /* line-height */
+  --line-height-16: 1rem; /* 16px */
+  --line-height-18: 1.125rem; /* 18px */
+  --line-height-20: 1.25rem; /* 20px */
+
+  /* height */
+  --height-14: 0.875rem; /* 14px */
+  --height-20: 1.25rem; /* 20px */
+  --height-60: 3.75rem; /* 60px */
+
+  --btn-computed-size: 34px;
+
+  /* nz-select */
+  --nz-select-color: #707072;;
+}
+
+.content {
+  /*border-radius: var(--radius-10);*/
+  background: #fff;
+  min-height: calc(100vh - 140px);
+}
