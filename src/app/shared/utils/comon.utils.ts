@@ -18,7 +18,8 @@ export default class CommonUtils {
         // }
         return formData;
       } else if (Array.isArray(object)) {
-        object.forEach(item => CommonUtils.optimalObjectParams(item));
+        // object.forEach(item => CommonUtils.optimalObjectParams(item));
+        return object.filter((item) => item !== undefined && item !== null && item !== '').map(item => CommonUtils.optimalObjectParams(item));
       } else if (typeof object === 'string') {
         object = object.replace(/ + /g, ' ').trim();
       } else if (object instanceof Date) {
@@ -92,4 +93,15 @@ export default class CommonUtils {
     }
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
+
+  static isKeyCodePrintable(keycode: number): boolean {
+    // [\]' (in order)
+    return (keycode > 47 && keycode < 58) || // number keys
+      keycode === 32 || keycode === 13 || // spacebar & return key(s) (if you want to allow carriage returns)
+      (keycode > 64 && keycode < 91) || // letter keys
+      (keycode > 95 && keycode < 112) || // numpad keys
+      (keycode > 185 && keycode < 193) || // ;=,-./` (in order)
+      (keycode > 218 && keycode < 223) || [8, 46, 231].includes(keycode);
+  }
+
 }

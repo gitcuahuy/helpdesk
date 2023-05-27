@@ -31,6 +31,8 @@ export interface IAuthService<T extends BaseCredential> {
   check(): Observable<boolean>;
 
   profile(): Observable<T>;
+
+  hasAnyAuthority(authorities: string[] | string): boolean;
 }
 
 export abstract class AuthService<T extends BaseCredential> {
@@ -100,5 +102,14 @@ export abstract class AuthService<T extends BaseCredential> {
       this.clearItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
     }
   };
-
+  hasAnyAuthority(authorities: string[] | string): boolean {
+    // TODO: implement
+    if (!this.user) {
+      return false;
+    }
+    if (!Array.isArray(authorities)) {
+      authorities = [authorities];
+    }
+    return authorities.some((authority: string) => this.user?.authorities?.includes(authority));
+  }
 }

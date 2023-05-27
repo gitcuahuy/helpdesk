@@ -1,2 +1,2 @@
 
-export const sidebarMenuItems = [];
+export const sideqbarMenuItems = [];

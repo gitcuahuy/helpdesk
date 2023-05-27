@@ -5,7 +5,7 @@ import {EntityResponseType, HTTP_HEADERS} from "../../constants/http.constants";
 import {STRING_POOL} from "../../constants/string-pool.constants";
 import {Observable} from "rxjs";
 import {IBaseResponse} from "../../model/base/base.response";
-import CommonUtils from "../../utils/coomon.utils";
+import CommonUtils from "../../utils/comon.utils";
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,7 @@ import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize, switchMap} from "rxjs/operators";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {FIRE_COLLECTION} from "../constants/document.constants";
-import CommonUtils from "../utils/coomon.utils";
+import CommonUtils from "../utils/comon.utils";
 
 @Injectable({
   providedIn: 'root'
