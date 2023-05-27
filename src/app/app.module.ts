@@ -21,6 +21,7 @@ import {AuthFirebaseService} from "./core/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AbstractFileUploadService} from "@shared/model/base/file-upload.model";
 import {FirebaseStorageService} from "@shared/service/firebase-storage.service";
+import { RegisterComponent } from './modules/auth/register/register.component';
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -34,7 +35,8 @@ const routerConfig: ExtraOptions = {
     LoginComponent,
     ResetPasswordComponent,
     VerifyOTPComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,

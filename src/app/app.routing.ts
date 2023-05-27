@@ -7,6 +7,7 @@ import {ResetPasswordComponent} from "./modules/auth/reset-password/reset-passwo
 import {VerifyOTPComponent} from "./modules/auth/verify-otp/verify-otp.component";
 import {ForgotPasswordComponent} from "./modules/auth/forgot-password/forgot-password.component";
 import {NoAuthGuard} from "@shared/auth/guard/no-auth.guard";
+import {RegisterComponent} from "./modules/auth/register/register.component";
 
 export const appRoutes: Route[] = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -36,6 +37,10 @@ export const appRoutes: Route[] = [
       {
         path: 'verify-otp',
         component: VerifyOTPComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
     ]
   },
