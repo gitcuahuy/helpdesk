@@ -36,7 +36,7 @@ const routerConfig: ExtraOptions = {
     ResetPasswordComponent,
     VerifyOTPComponent,
     ForgotPasswordComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     HttpClientModule,

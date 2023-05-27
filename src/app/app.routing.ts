@@ -44,6 +44,14 @@ export const appRoutes: Route[] = [
       }
     ]
   },
+  {
+    path: 'main',
+    component: LayoutComponent,
+    data: {
+      layout: LAYOUT.MAIN
+    },
+    loadChildren: () => import('./modules/business/bussiness.module').then(m => m.BussinessModule)
+  },
   // Auth routes for authenticated users
   // sign-out
   // unlock
