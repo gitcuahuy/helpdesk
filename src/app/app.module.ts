@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgxFormValidateModule} from 'ngx-form-validate';
 import {AppComponent} from './app.component';
@@ -19,15 +19,17 @@ import {ForgotPasswordComponent} from './modules/auth/forgot-password/forgot-pas
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthFirebaseService} from "./core/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
-import {AbstractFileUploadService} from "@shared/model/base/file-upload.model";
 import {FirebaseStorageService} from "@shared/service/firebase-storage.service";
-import { RegisterComponent } from './modules/auth/register/register.component';
+import {RegisterComponent} from './modules/auth/register/register.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
   scrollPositionRestoration: 'enabled',
 };
-
+interface NgxSpinnerConfig {
+  type?: string;
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,10 +54,13 @@ const routerConfig: ExtraOptions = {
     RouterModule.forRoot(appRoutes, routerConfig),
     CoreModule,
     ReactiveFormsModule,
+    // NgxSpinnerModule
+    NgxSpinnerModule
     // ToastrModule.forRoot({timeOut: 5000}), // ToastrModule added,
   ],
   providers: [AngularFireAuth, AngularFireDatabase, AuthFirebaseService, FirebaseStorageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
 }

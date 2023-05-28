@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseStorageService} from "./shared/service/firebase-storage.service";
-import firebase from "firebase";
 import {ConfigService} from "./core/config/config.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,15 @@ export class AppComponent implements OnInit {
   title = 'a-help-fe';
 
   ngOnInit(): void {
-
+    this.spinner.show()
+    setTimeout(() => {
+      this.spinner.hide()
+    }, 3000)
   }
 
   constructor(private _firebaseUpload: FirebaseStorageService,
-              private _ConfigService: ConfigService
+              private _ConfigService: ConfigService,
+              private spinner: NgxSpinnerService
   ) {
 
   }
