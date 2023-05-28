@@ -1,5 +1,6 @@
 import {AuditableModel} from "@shared/model/base/AuditableModel";
 import {BaseCredential} from "@shared/auth/model/base-cridential.model";
+import {AuthedResponse} from "@shared/auth/model/authedResponse";
 
 export interface IPermission {
   roleId?: string;
@@ -51,11 +52,13 @@ export interface IUser extends BaseCredential{
 
   id?: string;
   avatarFileId?: string | null;
+  avatarUrl?: string | null;
   background?: string | null;
   fullName?: string;
   username?: string;
   roles?: IRole[];
   emails?: IProperty[];
+  emailVerified?: boolean;
   phoneNumbers?: IProperty[];
   title?: string;
   organizationId?: string;
@@ -96,4 +99,8 @@ export enum UserLevel {
 export enum AccountType {
   EMPLOYEE = 'EMPLOYEE',
   CUSTOMER = 'CUSTOMER',
+}
+
+export interface ILoginResponse extends AuthedResponse, IUser {
+
 }

@@ -52,14 +52,14 @@ export class LoginComponent implements OnInit {
     authProvider.setCustomParameters({
       prompt: "select_account"
     });
-    this.authService.AuthLogin(authProvider).then(res => {
+    this.authService.OAuthLogin(authProvider).then(res => {
       console.log('res', res);
     })
   }
 
   loginFacebook(): void {
     const authProvider = new firebase.auth.FacebookAuthProvider();
-    this.authService.AuthLogin(authProvider).then(res => {
+    this.authService.OAuthLogin(authProvider).then(res => {
       console.log('res', res);
     })
   }
