@@ -16,8 +16,8 @@ export const appRoutes: Route[] = [
   // Auth routes for guests
   {
     path: '',
-    // canActivate: [NoAuthGuard],
-    // canActivateChild: [NoAuthGuard],
+    canActivate: [NoAuthGuard],
+    canActivateChild: [NoAuthGuard],
     component: LayoutComponent,
     data: {
       layout: LAYOUT.EMPTY
@@ -53,7 +53,7 @@ export const appRoutes: Route[] = [
     data: {
       layout: LAYOUT.MAIN
     },
-    loadChildren: () => import('./modules/business/bussiness.module').then(m => m.BussinessModule)
+    loadChildren: () => import('./modules/business/business.module').then(m => m.BusinessModule)
   },
   // Auth routes for authenticated users
   // sign-out

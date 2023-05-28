@@ -44,12 +44,12 @@ export abstract class AuthService<T extends BaseCredential> {
     this._user = new BehaviorSubject<T | undefined>(this.getItem(LOCAL_STORAGE_KEYS.PROFILE));
   }
 
-  private getItem<K>(key: string): K | undefined {
+  protected getItem<K>(key: string): K | undefined {
     const userStr = localStorage.getItem(key);
     return !!userStr ? JSON.parse(userStr) : undefined
   }
 
-  private setItem<K>(key: string, value: K | undefined): void {
+  protected setItem<K>(key: string, value: K | undefined): void {
     if (value) {
       localStorage.setItem(key, JSON.stringify(value));
     } else {
@@ -57,7 +57,7 @@ export abstract class AuthService<T extends BaseCredential> {
     }
   }
 
-  private clearItem(key: string): void {
+  protected clearItem(key: string): void {
     localStorage.removeItem(key);
   }
 

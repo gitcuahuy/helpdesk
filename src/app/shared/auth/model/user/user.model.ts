@@ -40,7 +40,7 @@ export interface IProperty extends AuditableModel{
   label: string;
   primary?: boolean;
 }
-export interface IUser extends BaseCredential{
+export interface IUser extends BaseCredential, AuditableModel{
   gender?: Gender;
   roleIds?: string[];
   userLevel?: UserLevel;

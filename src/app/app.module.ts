@@ -22,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FirebaseStorageService} from "@shared/service/firebase-storage.service";
 import {RegisterComponent} from './modules/auth/register/register.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import {ToastrModule} from "ngx-toastr";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -55,7 +56,8 @@ interface NgxSpinnerConfig {
     CoreModule,
     ReactiveFormsModule,
     // NgxSpinnerModule
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot(), // ToastrModule added
     // ToastrModule.forRoot({timeOut: 5000}), // ToastrModule added,
   ],
   providers: [AngularFireAuth, AngularFireDatabase, AuthFirebaseService, FirebaseStorageService],

@@ -11,4 +11,4 @@ import { BussinessRoutingModule } from './bussiness-routing.module';
     BussinessRoutingModule
   ]
 })
-export class BussinessModule { }
+export class BusinessModule { }

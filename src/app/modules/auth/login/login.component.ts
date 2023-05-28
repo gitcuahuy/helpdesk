@@ -3,6 +3,8 @@ import {AuthFirebaseService} from "../../../core/auth/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import firebase from "firebase";
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 export const FORM_FIELDS = {
   username: 'username',
@@ -22,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthFirebaseService,
               private _cdr: ChangeDetectorRef,
+              private router: Router,
+              private toastrService: ToastrService,
               private _fb: FormBuilder) {
     this.loginForm = this._fb.group({
       [FORM_FIELDS.username]: ['', [Validators.required]],
@@ -42,8 +46,10 @@ export class LoginComponent implements OnInit {
     }
     this.authService.loginUserName({username: this.loginForm.get(FORM_FIELDS.username)?.value,
       password: this.loginForm.get(FORM_FIELDS.password)?.value,
-      isRememberMe: this.loginForm.get(FORM_FIELDS.rememberMe)?.value}).subscribe(res => {
-      console.log('res', res);
+      isRememberMe: this.loginForm.get(FORM_FIELDS.rememberMe)?.value})
+      .subscribe(res => {
+        this.toastrService.success('Login success');
+        this.router.navigate(['/dashboard']);
     });
   }
 
@@ -52,14 +58,14 @@ export class LoginComponent implements OnInit {
     authProvider.setCustomParameters({
       prompt: "select_account"
     });
-    this.authService.OAuthLogin(authProvider).then(res => {
-      console.log('res', res);
+    this.authService.OAuthLogin(authProvider).subscribe(res => {
+      console.log('res oauth goolge', res);
     })
   }
 
   loginFacebook(): void {
     const authProvider = new firebase.auth.FacebookAuthProvider();
-    this.authService.OAuthLogin(authProvider).then(res => {
+    this.authService.OAuthLogin(authProvider).subscribe(res => {
       console.log('res', res);
     })
   }

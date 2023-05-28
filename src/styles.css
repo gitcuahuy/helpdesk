@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* Global base styles */
 @import "assets/css/globalStyle.css";
+/*// regular style toast*/
+@import 'ngx-toastr/toastr';
+
+/*@import 'ngx-toastr/toastr-bs4-alert';*/
+/*// boostrap 5*/
+/*@import 'ngx-toastr/toastr-bs5-alert';*/
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
