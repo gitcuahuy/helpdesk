@@ -21,8 +21,8 @@ import {AuthFirebaseService} from "./core/auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FirebaseStorageService} from "@shared/service/firebase-storage.service";
 import {RegisterComponent} from './modules/auth/register/register.component';
-import {NgxSpinnerModule} from "ngx-spinner";
 import {ToastrModule} from "ngx-toastr";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,

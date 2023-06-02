@@ -151,13 +151,16 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-between align-items-center">
         <div class="image">
-          <img src="assets/images/avatar.png" height="160" width="160" class="img-circle elevation-2" alt="User Image">
+          <img src="{{this.currentUser?.avatarUrl || 'assets/images/avatar.png'}}" height="160" width="160" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="font-weight-bold">{{this.currentUser?.fullName}}</a>
         </div>
+        <button (click)="logout()" mat-icon-button [style.color]="'white'" aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>logout</mat-icon>
+        </button>
       </div>
 
       <!-- SidebarSearch Form -->

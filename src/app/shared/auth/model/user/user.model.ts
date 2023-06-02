@@ -49,6 +49,8 @@ export interface IUser extends BaseCredential, AuditableModel{
   lastAuthChangeAt?: string;
   userPrimary?: IUserPrimary;
   departmentName?: string;
+  latitude?: number;
+  longitude?: number;
 
   id?: string;
   avatarFileId?: string | null;

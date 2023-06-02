@@ -28,7 +28,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+//              "./node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               // ===> Add css file based on your animation name(here it's "ball-scale-multiple")
               // You're able to add multiple files if you need
               "src/styles.css"

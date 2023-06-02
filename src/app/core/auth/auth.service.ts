@@ -35,7 +35,6 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
     this.afAuth.authState.pipe(
       mergeMap(user => {
         if (user) {
-          console.log('user', user, user.uid)
           return this.userCollection.doc(user.uid).get({source: 'default'}).pipe(
             map((doc) => {
               if (!doc.exists) {
@@ -53,11 +52,34 @@ export class AuthFirebaseService extends AuthService<IUser> implements IAuthServ
         return of(null);
       })
     ).subscribe(user => {
-      console.log('current user', user);
       this.user = user;
+      /// check location
+      if (navigator.geolocation && user?.id) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          //check location
+          if (user?.latitude !== position.coords.latitude || user?.longitude !== position.coords.longitude) {
+            this.userCollection.doc(user.id).get().pipe(take(1)).subscribe(doc => {
+              doc.ref.update({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+              });
+            });
+          }
+        });
+      } else {
+        console.warn('Geolocation is not supported by this browser.');
+      }
     });
   }
-
+  getUserLocation(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
   check(): Observable<boolean> {
     return this.user$.pipe(map(user => !!user));
   }
